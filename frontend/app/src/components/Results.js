@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { budget } from '../constants/budget';
 import { GlobalContext } from '../context/GlobalState';
 import { calculator } from '../services/calculator';
+import '../styles/Result.scss';
 
 export default function Results() {
   const { userInputs } = useContext(GlobalContext);
@@ -20,18 +21,39 @@ export default function Results() {
     );
     setTotalRevenue(final.Total);
     setBaseProfit(final.Base);
-    setBonus(final.bonus);
+    setBonus(final.Bonus);
   });
 
+  const addCommas = (num) => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
+
+  let shareOfProfit = (userInputs.investmentAmount / budget) * 0.5;
+  shareOfProfit = Math.round(shareOfProfit * 1000) / 1000;
   return (
-    <div>
+    <div className="resultBox">
       <p>Your total revenue will be</p>
-      <h1>
-        $
-        {Math.round((totalRevenue * 1000) / 1000)
-          .toString()
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-      </h1>
+      <h1>${addCommas(Math.round((totalRevenue * 1000) / 1000))}</h1>
+      <div className="additionalData">
+        <div>
+          <p>Base Profit</p>
+          <p>Total revenue x Share of Profit</p>
+          <p>
+            ${addCommas(Math.round(userInputs.musicalRevenue))} x{' '}
+            {shareOfProfit}
+          </p>
+          <strong>${addCommas(Math.round(baseProfit))}</strong>
+        </div>
+        <div>
+          <p>Bonus Profit</p>
+          <p>Total revenue x Share of Profit x Point Deal</p>
+          <p>
+            ${addCommas(Math.round(userInputs.musicalRevenue))} x{' '}
+            {shareOfProfit} x {userInputs.points}
+          </p>
+          <strong>${addCommas(Math.round(bonus))}</strong>
+        </div>
+      </div>
     </div>
   );
 }

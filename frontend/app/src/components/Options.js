@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { useState, useEffect } from 'react';
 import { budget } from '../constants/budget';
 import { GlobalContext } from '../context/GlobalState';
+import '../styles/RangeInput.scss';
+import '../styles/Options.scss';
 
 export default function Options() {
   const { userInputs } = useContext(GlobalContext);
@@ -47,8 +49,7 @@ export default function Options() {
       <input type="range" onChange={handleInvestmentChange} max={budget} />
       <p>
         Your Share of Capital is {shareOfCapital} ( Your investment amount /
-        musical total revenue) <br />= {investment} / {budget} <br />={' '}
-        {shareOfCapital}
+        budget) <br />= {investment} / {budget} <br />= {shareOfCapital}
       </p>
       <p>
         Your Share of Profit is {shareOfProfit} ( Your share of capital * 50%
@@ -64,43 +65,56 @@ export default function Options() {
         ${musicalRevenue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
       </h1>
       <input type="range" onChange={handleMusicalRevenueChange} />
-      <div>
-        <h2>Investment Package</h2>
-        <p>
-          Note: Different packages require different minimum investment amounts
-        </p>
-        <form>
-          <input
-            type="radio"
-            id="basic"
-            name="drone"
-            value="basic"
-            onClick={handlePointChange}
-          />
-          <label for="basic">Basic Investor</label>
-          <input
-            type="radio"
-            id="premium"
-            name="drone"
-            value="premium"
-            onClick={handlePointChange}
-          />
-          <label for="basic">Premium Investor</label>
-          <input
-            type="radio"
-            id="deluxe"
-            name="drone"
-            value="deluxe"
-            onClick={handlePointChange}
-          />
-          <label for="basic">Deluxe Investor</label>
-        </form>
-        <strong>Your Point Deal</strong>
-        <h1>{points}</h1>
-        <p>
-          For every {Math.round(1 / points)} shares, you receive an additional
-          share
-        </p>
+      <div className="layout">
+        <div>
+          <h2>Investment Package</h2>
+          <p>
+            Note: Different packages require different minimum investment
+            amounts
+          </p>
+          <form>
+            <div>
+              <input
+                type="radio"
+                id="basic"
+                name="drone"
+                value="basic"
+                onClick={handlePointChange}
+              />
+              <label for="basic">Basic Investor</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="premium"
+                name="drone"
+                value="premium"
+                onClick={handlePointChange}
+              />
+              <label for="basic">Premium Investor</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="deluxe"
+                name="drone"
+                value="deluxe"
+                onClick={handlePointChange}
+              />
+              <label for="basic">Deluxe Investor</label>
+            </div>
+          </form>
+        </div>
+        <div className="points">
+          <strong>Your Point Deal</strong>
+          <h1>
+            1 for {Math.round(1 / points)} = {points}
+          </h1>
+          <p>
+            For every {Math.round(1 / points)} shares, you receive an additional
+            share
+          </p>
+        </div>
       </div>
     </div>
   );

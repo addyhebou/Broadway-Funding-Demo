@@ -1,0 +1,13 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  background-color: #f6fdf9;
+  .container {
+    margin: 0vh 5vw;
+  }
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+  }
+}
