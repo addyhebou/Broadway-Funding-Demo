@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from 'react';
 import AppReducer from './AppReducer';
 
 const initialState = {
-  userInputs: { investmentAmount: 0, musicalRevenue: 23000000, points: 0.33 },
+  userInputs: { investmentAmount: 0, musicalRevenue: 27620000, points: 0.33 },
 };
 
 export const GlobalContext = createContext(initialState);

@@ -1,3 +1,3 @@
-const budget = 8000000;
+const budget = 17250000;
 
 module.exports.budget = budget;

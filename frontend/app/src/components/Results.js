@@ -36,7 +36,7 @@ export default function Results() {
       <h1>${addCommas(Math.round((totalRevenue * 1000) / 1000))}</h1>
       <div className="additionalData">
         <div>
-          <p>Base Profit</p>
+          <strong>Base Profit</strong>
           <p>Total revenue x Share of Profit</p>
           <p>
             ${addCommas(Math.round(userInputs.musicalRevenue))} x{' '}
@@ -45,7 +45,7 @@ export default function Results() {
           <strong>${addCommas(Math.round(baseProfit))}</strong>
         </div>
         <div>
-          <p>Bonus Profit</p>
+          <strong>Bonus Profit</strong>
           <p>Total revenue x Share of Profit x Point Deal</p>
           <p>
             ${addCommas(Math.round(userInputs.musicalRevenue))} x{' '}
